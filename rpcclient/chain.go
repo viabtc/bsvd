@@ -97,7 +97,7 @@ func (c *Client) GetBlockAsync(blockHash *chainhash.Hash) FutureGetBlockResult {
 		hash = blockHash.String()
 	}
 
-	cmd := btcjson.NewGetBlockCmd(hash, btcjson.Uint32(0))
+	cmd := btcjson.NewGetBlockCmd(hash, false)
 	return c.sendCmd(cmd)
 }
 
@@ -141,7 +141,7 @@ func (c *Client) GetBlockVerboseAsync(blockHash *chainhash.Hash) FutureGetBlockV
 		hash = blockHash.String()
 	}
 
-	cmd := btcjson.NewGetBlockCmd(hash, btcjson.Uint32(1))
+	cmd := btcjson.NewGetBlockCmd(hash, true)
 	return c.sendCmd(cmd)
 }
 
@@ -187,7 +187,7 @@ func (c *Client) GetBlockVerboseTxAsync(blockHash *chainhash.Hash) FutureGetBloc
 		hash = blockHash.String()
 	}
 
-	cmd := btcjson.NewGetBlockCmd(hash, btcjson.Uint32(2))
+	cmd := btcjson.NewGetBlockCmd(hash, true)
 
 	return c.sendCmd(cmd)
 }
