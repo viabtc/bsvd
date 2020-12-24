@@ -23,9 +23,9 @@ import (
 	"sync/atomic"
 	"time"
 
+	"github.com/bitcoinsv/bsvd/btcjson"
 	"github.com/btcsuite/go-socks/socks"
 	"github.com/btcsuite/websocket"
-	"github.com/bitcoinsv/bsvd/btcjson"
 )
 
 var (
@@ -1140,8 +1140,9 @@ func newHTTPClient(config *ConnConfig) (*http.Client, error) {
 
 	client := http.Client{
 		Transport: &http.Transport{
-			Proxy:           proxyFunc,
-			TLSClientConfig: tlsConfig,
+			MaxIdleConnsPerHost: 10,
+			Proxy:               proxyFunc,
+			TLSClientConfig:     tlsConfig,
 		},
 	}
 
